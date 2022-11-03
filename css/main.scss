@@ -1,0 +1,67 @@
+$size: 1000px;
+$color: #263343;
+$font-color: rgb(240, 247, 249);
+
+a {
+  text-decoration: none;
+  color: $font-color;
+}
+body {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  header {
+    position: absolute;
+    background-position: 50%;
+    .navbar {
+      height: 100vh;
+      width: 100vw;
+      background-color: $color;
+      top: 50%;
+      position: absolute;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      i {
+        color: $font-color;
+      }
+      &__logo {
+        font-size: 8em;
+        overflow-wrap: normal;
+        color: $font-color;
+      }
+      &__menu {
+        display: flex;
+        .searchbox {
+          position: relative;
+          i.fa-solid {
+            position: absolute;
+            color: $color;
+            height: 100%;
+            left: 15px;
+            top: 25%;
+          }
+          .search-input {
+            min-width: 50em;
+            height: 44px;
+            border-radius: calc(0.5 * 44px);
+            padding-inline-start: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__menu {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}

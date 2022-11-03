@@ -8,13 +8,37 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
     />
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main.scss" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/febf8ecb9c.js"
+      crossorigin="anonymous"
+    ></script>
     <title>movie-searcher</title>
   </head>
   <body>
     <header>
-      <h1>movie searcher</h1>
-      <input type="text" placeholder="Search for movies" />
+      <nav class="navbar">
+        <div class="navbar__logo">
+          <a href="">Movie <br />Searcher</a>
+        </div>
+        <ul class="navbar__menu">
+          <li class="searchbox">
+            <input
+              type="search"
+              placeholder="Search for movies"
+              class="search-input"
+            />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </li>
+        </ul>
+        </div>
+      </nav>
     </header>
   </body>
 </html>
