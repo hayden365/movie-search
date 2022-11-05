@@ -8,7 +8,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
     />
-    <link rel="stylesheet" href="./css/main.scss" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +18,7 @@
       src="https://kit.fontawesome.com/febf8ecb9c.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="./css/main.scss" />
     <script defer type="module" src="./js/main.js"></script>
     <title>movie-searcher</title>
   </head>
@@ -35,11 +35,15 @@
             type="search"
             placeholder="Search for movies"
             class="search-input"
+            id="movie-search"
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="result-container">
-          <div class="result">
+        <div class="result-20-container">
+          <div class="poster-list" id="poster-list"></div>
+        </div>
+        <!-- <div class="result-container">
+          <div class="result" id="result">
             <div class="movie-poster">
               <img
                 src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
@@ -61,18 +65,21 @@
                 <b>Actors:</b> Chris Pratt, Zoe Saldana, Dave Bautista
               </p>
               <p class="plot">
-                <b>Plot:</b>The Guardians struggle to keep together as a team
+                <b>Plot:</b> The Guardians struggle to keep together as a team
                 while dealing with their personal family issues, notably
                 Star-Lord's encounter with his father the ambitious celestial
                 being Ego.
               </p>
               <p class="language"><b>Language:</b> English</p>
               <p class="awards">
-                <b><i class="fas fa-award"></i>Nominated for 1 Oscar</b>
+                <b
+                  ><i class="fas fa-award"></i>Nominated for 1 Oscar. 15 wins &
+                  59 nominations total</b
+                >
               </p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </body>

@@ -25,20 +25,15 @@ img {
 
 body {
   font-family: 'Roboto', sans-serif;
-  width: 100%;
-  height: 100%;
   .wrapper {
     background-color: $color;
-    .container {
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
+    min-height: 100vh;
   }
 }
 
 header {
+  width: 100%;
   background-color: $color-dark;
-  height: $search-height;
 
   .logo {
     padding: 0.5rem 0 0 1rem;
@@ -49,17 +44,18 @@ header {
 }
 
 .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
   .search-container {
     position: relative;
-    min-height: 180px;
-    max-width: 400px;
-    margin: auto;
+    margin: 4rem auto;
+    max-width: 500px;
     .search-input {
       width: 100%;
       height: $search-height;
       border-radius: calc(0.5 * $search-height);
       padding-inline-start: 50px;
-      margin: auto;
     }
     i.fa-solid {
       position: absolute;
@@ -67,6 +63,14 @@ header {
       left: 15px;
       top: calc($search-height / 3);
     }
+  }
+}
+
+.result-20-container {
+  .movie-poster {
+    max-width: 200px;
+    margin: 0 auto;
+    border: 4px solid $font-color;
   }
 }
 
@@ -78,7 +82,6 @@ header {
     opacity: 0.9;
     .movie-poster {
       max-width: 300px;
-
       margin: 0 auto;
       border: 4px solid $font-color;
     }
@@ -115,7 +118,7 @@ header {
         background-color: $color-dark;
         display: inline-block;
         padding: 0.5rem;
-        margin: 0.3rem;
+        margin: 0.3rem 0 1rem;
         border-radius: 5px;
       }
       .plot {
@@ -129,31 +132,50 @@ header {
       .awards {
         font-weight: 300;
         font-size: 0.9rem;
-      }
-
-      .awards i {
-        color: $color-contrast;
-        margin: 1rem 0.7rem 0 0;
+        i {
+          color: $color-contrast;
+          margin: 1rem 0.7rem 0 0;
+        }
       }
     }
   }
 }
-
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1.4rem;
-  }
+@media screen and (max-width: 450px) {
   .search-container {
-    min-width: 300px;
+    max-width: 350px;
+    .search-input {
+      max-width: 100%;
+    }
   }
   .movie-more-info {
     flex-direction: column;
   }
 }
 
-@media (min-width: 1000px) {
+@media screen and (min-width: 1000px) {
   .result {
     display: grid;
+    margin: auto;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .result-container {
+    .result {
+      .movie-info {
+        text-align: left;
+        padding-top: 0;
+        .movie-more-info {
+          justify-content: flex-start;
+          padding-left: 0;
+        }
+
+        .plot {
+          margin-left: 0;
+        }
+        .writer {
+          padding-left: 0;
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
