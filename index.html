@@ -19,7 +19,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./css/main.scss" />
-    <script defer type="module" src="./js/main.js"></script>
+    <script defer src="./js/main.js"></script>
     <title>movie-searcher</title>
   </head>
   <body>
@@ -32,16 +32,29 @@
       <div class="container">
         <div class="search-container">
           <input
-            type="search"
+            type="text"
             placeholder="Search for movies"
             class="search-input"
             id="movie-search"
           />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="result-20-container">
-          <div class="poster-list" id="poster-list"></div>
+        <div class="main-list">
+          <!-- <div class="main-list-item" id="main-list-item">
+            <a href="javascript:void(0)" class="main-list-item__link">
+              <div class="title-poster">
+                <picture class="title-poster__image">
+                  <img alt="" src="" loading="eager" class="picture__img" />
+                </picture>
+                <div class="title-poster__info">
+                  <h3></h3>
+                  <span></span>
+                </div>
+              </div>
+            </a>
+          </div> -->
         </div>
+
         <!-- <div class="result-container">
           <div class="result" id="result">
             <div class="movie-poster">
