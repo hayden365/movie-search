@@ -45,6 +45,8 @@ function loadMovieDetails() {
   mainListMovies.forEach((movie) => {
     movie.addEventListener('click', async () => {
       console.log(movie.dataset.id);
+      resultGrid.classList.remove('hidden');
+      mainList.classList.add('hidden');
     });
   });
 }
