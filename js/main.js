@@ -49,4 +49,10 @@ function loadMovieDetails() {
       mainList.classList.add('hidden');
     });
   });
+  resultGrid.addEventListener('click', () => {
+    if (mainList.classList.contains('hidden')) {
+      mainList.classList.remove('hidden');
+      resultGrid.classList.add('hidden');
+    }
+  });
 }
