@@ -11,30 +11,31 @@ movieSearch.addEventListener('input', (e) => {
   getMovies(title);
 });
 
-async function getMovies(title) {
-  const pageOne = await fetch(
-    `https://omdbapi.com/?s=${title}&apikey=bcafafa5&page=1`
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-  const pageTwo = await fetch(
-    `https://omdbapi.com/?s=${title}&apikey=bcafafa5&page=2`
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-  const pageThree = await fetch(
-    `https://omdbapi.com/?s=${title}&apikey=bcafafa5&page=3`
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-  const pages = [...pageOne.Search,...pageTwo.Search,...pageThree.Search].map((movie)=>movie.imdbID)
-  return displayMovieList(pages)
+async function getMovies(title, page) {
+  const URL = `https://omdbapi.com/?s=${title}&page=${page}&apikey=bcafafa5`;
+  const res = await fetch(`${URL}`);
+  const data = await res.json();
+  const pageLength = parseInt(data.totalResults / 10) || 0;
+  console.log(pageLength);
+  if (pageLength <= 1 && data.Response == 'True')
+    return displayMovieList(data.Search);
+  else if (pageLength > 1) {
+    const URL2 = `https://omdbapi.com/?s=${title}&page=2&apikey=bcafafa5`;
+    const res2 = await fetch(`${URL2}`);
+    const data2 = await res2.json();
+
+    const URL3 = `https://omdbapi.com/?s=${title}&page=3  &apikey=bcafafa5`;
+    const res3 = await fetch(`${URL3}`);
+    const data3 = await res3.json();
+
+    displayMovieList([...data.Search, ...data2.Search, ...data3.Search]);
+  }
+}
 
 function displayMovieList(movies) {
   mainList.innerHTML = '';
   for (let idx = 0; idx < movies.length; idx++) {
     let movieListItem = document.createElement('div');
-    movieListItem.dataset.id = movies[idx].imdbID;
     movieListItem.classList.add('main-list-item');
     movieListItem.innerHTML = `<a href="javascript:void(0)" class="main-list-item__link">
       <div class="title-poster">
@@ -42,7 +43,7 @@ function displayMovieList(movies) {
           <img alt="${movies[idx].Title}" src="${
       movies[idx].Poster !== 'N/A'
         ? movies[idx].Poster
-        : 'images/image_not_found.png'
+        : './images/image_not_found.png'
     }" loading="eager" class="picture__${movies[idx].imdbID}" />
         </picture>
       </div>
@@ -71,7 +72,7 @@ function displayMovieDetails(movie) {
   <div class="movie-poster">
   <img
     src= "${
-      movie.Poster !== 'N/A' ? movie.Poster : 'images/image_not_found.png'
+      movie.Poster !== 'N/A' ? movie.Poster : './images/image_not_found.png'
     }"
     alt="movie-poster"
   />
@@ -107,4 +108,3 @@ function displayMovieDetails(movie) {
     }
   });
 }
-

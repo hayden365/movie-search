@@ -93,10 +93,46 @@ header {
       }
       &:hover {
         img {
-          border: 3px solid rgba($font-color, 0.3);
+          border: 5px solid rgba($font-color, 0.9);
         }
       }
     }
+  }
+}
+
+[h-loader] {
+  width: 50px;
+  height: 50px;
+  color: $font-color;
+}
+svg {
+  animation: progress-circular-rotate 1.4s linear infinite;
+}
+circle {
+  animation: progress-circular-dash 1.4s ease-in-out infinite;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-dasharray: 80, 200;
+  stroke-dashoffset: 0px;
+  stroke: currentColor;
+}
+@keyframes progress-circular-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  to {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -124px;
   }
 }
 
