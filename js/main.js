@@ -69,7 +69,7 @@ function displayMovieList(movies) {
           <img alt="${movies[idx].Title}" src="${
       movies[idx].Poster !== 'N/A'
         ? movies[idx].Poster
-        : './images/image_not_found.png'
+        : 'images/image_not_found.png'
     }" loading="eager" class="picture__${movies[idx].imdbID}" />
         </picture>
       </div>
@@ -110,7 +110,7 @@ function displayMovieDetails(movie) {
   <div class="movie-poster">
   <img
     src= "${
-      movie.Poster !== 'N/A' ? movie.Poster : './images/image_not_found.png'
+      movie.Poster !== 'N/A' ? movie.Poster : 'images/image_not_found.png'
     }"
     alt="movie-poster"
   />
