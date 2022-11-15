@@ -5,25 +5,25 @@ const mainList = document.getElementById('main-list');
 const resultGrid = document.getElementById('result-container');
 const result = document.getElementById('result');
 const loading = document.getElementById('main-loading');
+const detailsLoading = document.getElementById('details-loading');
 
 //검색창에서 한글자씩 input할때마다 감지
 movieSearch.addEventListener('input', (e) => {
   let title = e.target.value;
   console.log(title);
-  getMovies(title);
 
   //로딩화면
   loading.classList.remove('hidden');
-  setTimeout(hideLoading, 1000);
+  setTimeout(hideLoading, 1500);
 
+  function hideLoading() {
+    loading.classList.add('hidden');
+    getMovies(title);
+  }
   if (title.length < 3) {
     mainList.innerHTML = '';
   }
 });
-
-function hideLoading() {
-  loading.classList.add('hidden');
-}
 
 //api에서 영화 데이터 가져오기
 async function getMovies(title, page) {
@@ -52,7 +52,6 @@ async function getMovies(title, page) {
   //search글자수가 2개 이상이지만 데이터가 없다면 화면 비우기&모달창
   if (title.length > 2 && pageLength == 0) {
     mainList.innerHTML = '';
-    alert('일치 영화 없음');
   }
 }
 
@@ -90,7 +89,16 @@ function loadMovieDetails() {
         `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=bcafafa5`
       );
       const movieDetails = await result.json();
-      displayMovieDetails(movieDetails);
+      //상세화면 로딩보이기
+      detailsLoading.classList.remove('hidden');
+      mainList.classList.add('hidden');
+      resultGrid.classList.remove('hidden');
+      setTimeout(hideAndPrint, 500);
+      function hideAndPrint() {
+        detailsLoading.classList.add('hidden');
+        //로딩 후 결과화면 보이도록
+        displayMovieDetails(movieDetails);
+      }
     });
   });
 }
@@ -98,8 +106,6 @@ function loadMovieDetails() {
 //상세페이지
 function displayMovieDetails(movie) {
   //검색결과화면은 숨기고 상세페이지 표시
-  mainList.classList.add('hidden');
-  resultGrid.classList.remove('hidden');
   result.innerHTML = `
   <div class="movie-poster">
   <img
@@ -137,6 +143,8 @@ function displayMovieDetails(movie) {
   //상세페이지 클릭시 다시 검색결과 화면으로
   resultGrid.addEventListener('click', () => {
     if (mainList.classList.contains('hidden')) {
+      //상세화면 초기화
+      result.innerHTML = '';
       mainList.classList.remove('hidden');
       resultGrid.classList.add('hidden');
     }
