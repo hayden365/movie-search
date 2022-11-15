@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/hayden365/movie-search/issues"
   },
-  "homepage": "https://github.com/hayden365/movie-search#readme",
+  "homepage": ".",
   "devDependencies": {
     "node-sass": "^8.0.0",
     "parcel-bundler": "^1.12.5",
