@@ -1,4 +1,4 @@
-$size: 1700px;
+$size: 1500px;
 $font-color: rgb(243, 245, 245);
 $color-dark: #0c0c0f;
 $color-contrast: rgb(239, 227, 95);
@@ -26,10 +26,9 @@ img {
 body {
   font-family: 'Roboto', sans-serif;
   background-color: $color;
-  width: 100vw;
-  height: 100vh;
+  margin-bottom: 10rem;
+  overflow-x: hidden;
   .wrapper {
-    margin-bottom: 10rem;
     width: 100%;
   }
 }
