@@ -86,7 +86,72 @@ header .logo a {
   border-radius: 7px;
 }
 .container .main-list .main-list-item:hover img {
-  border: 3px solid rgba(243, 245, 245, 0.3);
+  border: 3px solid rgba(243, 245, 245, 0.9);
+}
+
+section {
+  width: 100vw;
+}
+section.hidden {
+  display: none;
+}
+section [h-loader] {
+  margin: 0 auto;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: rgb(243, 245, 245);
+}
+section svg {
+  -webkit-animation: progress-circular-rotate 1.4s linear infinite;
+          animation: progress-circular-rotate 1.4s linear infinite;
+}
+section circle {
+  -webkit-animation: progress-circular-dash 1.4s ease-in-out infinite;
+          animation: progress-circular-dash 1.4s ease-in-out infinite;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-dasharray: 80, 200;
+  stroke-dashoffset: 0px;
+  stroke: currentColor;
+}
+@-webkit-keyframes progress-circular-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes progress-circular-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@-webkit-keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  to {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  to {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -124px;
+  }
 }
 
 .result-container {
@@ -182,6 +247,9 @@ header .logo a {
   }
   .movie-more-info {
     flex-direction: column;
+  }
+  .container section {
+    width: 100%;
   }
 }
 @media screen and (min-width: 1000px) {
