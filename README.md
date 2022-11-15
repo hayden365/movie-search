@@ -30,6 +30,8 @@
 
 ### 배포
 
+[movie-searcher](https://comforting-rolypoly-d13e67.netlify.app)
+
 ### 기술 스택
 
 ```
