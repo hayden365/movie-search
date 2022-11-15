@@ -11,9 +11,10 @@ movieSearch.addEventListener('input', (e) => {
   let title = e.target.value;
   console.log(title);
   getMovies(title);
+
   //로딩화면
   loading.classList.remove('hidden');
-  setTimeout('hideLoading()', 1000);
+  setTimeout(hideLoading, 1000);
 
   if (title.length < 3) {
     mainList.innerHTML = '';
@@ -58,6 +59,7 @@ async function getMovies(title, page) {
 //불러온 영화목록을 movie-list-item에 담아주기
 function displayMovieList(movies) {
   mainList.innerHTML = '';
+
   for (let idx = 0; idx < movies.length; idx++) {
     let movieListItem = document.createElement('div');
     movieListItem.dataset.id = movies[idx].imdbID;
