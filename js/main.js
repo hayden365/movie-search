@@ -4,35 +4,54 @@ const movieSearch = document.getElementById('movie-search');
 const mainList = document.getElementById('main-list');
 const resultGrid = document.getElementById('result-container');
 const result = document.getElementById('result');
-const loading = document.querySelector('section');
+const loading = document.getElementById('main-loading');
 
 //검색창에서 한글자씩 input할때마다 감지
 movieSearch.addEventListener('input', (e) => {
   let title = e.target.value;
   console.log(title);
   getMovies(title);
+  //로딩화면
+  loading.classList.remove('hidden');
+  setTimeout('hideLoading()', 1000);
+
+  if (title.length < 3) {
+    mainList.innerHTML = '';
+  }
 });
+
+function hideLoading() {
+  loading.classList.add('hidden');
+}
 
 //api에서 영화 데이터 가져오기
 async function getMovies(title, page) {
   const URL = `https://omdbapi.com/?s=${title}&page=${page}&apikey=bcafafa5`;
   const res = await fetch(`${URL}`);
   const data = await res.json();
-  const pageLength = parseInt(data.totalResults / 10) || 0;
+  const pageLength = Math.ceil(data.totalResults / 10) || 0;
+  //2페이지
+  const URL2 = `https://omdbapi.com/?s=${title}&page=2&apikey=bcafafa5`;
+  const res2 = await fetch(`${URL2}`);
+  const data2 = await res2.json();
+  //3페이지
+  const URL3 = `https://omdbapi.com/?s=${title}&page=3&apikey=bcafafa5`;
+  const res3 = await fetch(`${URL3}`);
+  const data3 = await res3.json();
   //페이지 길이가 1페이지 이하일때는 그대로 불러오기
-  if (pageLength <= 1 && data.Response == 'True')
-    return displayMovieList(data.Search);
-  //페이지길이가 2페이지 이상일때는 최대 3페이지까지 불러오기
-  else if (pageLength > 1) {
-    const URL2 = `https://omdbapi.com/?s=${title}&page=2&apikey=bcafafa5`;
-    const res2 = await fetch(`${URL2}`);
-    const data2 = await res2.json();
-
-    const URL3 = `https://omdbapi.com/?s=${title}&page=3  &apikey=bcafafa5`;
-    const res3 = await fetch(`${URL3}`);
-    const data3 = await res3.json();
-
+  if (pageLength <= 1 && data.Response == 'True') displayMovieList(data.Search);
+  //페이지길이가 2페이지 이상일때는 3페이지까지 불러오기
+  else if (pageLength >= 2) {
+    displayMovieList([...data.Search, ...data2.Search]);
+  } else if (pageLength >= 3) {
     displayMovieList([...data.Search, ...data2.Search, ...data3.Search]);
+  }
+
+  console.log(pageLength);
+  //search글자수가 2개 이상이지만 데이터가 없다면 화면 비우기&모달창
+  if (title.length > 2 && pageLength == 0) {
+    mainList.innerHTML = '';
+    alert('일치 영화 없음');
   }
 }
 
@@ -56,6 +75,7 @@ function displayMovieList(movies) {
     </a>`;
     mainList.appendChild(movieListItem);
   }
+
   loadMovieDetails();
 }
 
@@ -76,8 +96,8 @@ function loadMovieDetails() {
 //상세페이지
 function displayMovieDetails(movie) {
   //검색결과화면은 숨기고 상세페이지 표시
-  resultGrid.classList.remove('hidden');
   mainList.classList.add('hidden');
+  resultGrid.classList.remove('hidden');
   result.innerHTML = `
   <div class="movie-poster">
   <img
@@ -111,6 +131,7 @@ function displayMovieDetails(movie) {
     >
   </p>
 </div>`;
+
   //상세페이지 클릭시 다시 검색결과 화면으로
   resultGrid.addEventListener('click', () => {
     if (mainList.classList.contains('hidden')) {
@@ -119,8 +140,3 @@ function displayMovieDetails(movie) {
     }
   });
 }
-
-//검색결과가 나오면 loading이 없어지도록
-if (mainList.hasChildNodes()) {
-  loading.classList.add('hidden');
-} else loading.classList.remove('hidden');
