@@ -26,17 +26,17 @@ movieSearch.addEventListener('input', (e) => {
 });
 
 //api에서 영화 데이터 가져오기
-async function getMovies(title, page) {
-  const URL = `https://omdbapi.com/?s=${title}&page=${page}&apikey=bcafafa5`;
+async function getMovies(title) {
+  const URL = `https://omdbapi.com/?s=${title}&page=1&apikey=7035c60c`;
   const res = await fetch(`${URL}`);
   const data = await res.json();
   const pageLength = Math.ceil(data.totalResults / 10) || 0;
   //2페이지
-  const URL2 = `https://omdbapi.com/?s=${title}&page=2&apikey=bcafafa5`;
+  const URL2 = `https://omdbapi.com/?s=${title}&page=2&apikey=7035c60c`;
   const res2 = await fetch(`${URL2}`);
   const data2 = await res2.json();
   //3페이지
-  const URL3 = `https://omdbapi.com/?s=${title}&page=3&apikey=bcafafa5`;
+  const URL3 = `https://omdbapi.com/?s=${title}&page=3&apikey=7035c60c`;
   const res3 = await fetch(`${URL3}`);
   const data3 = await res3.json();
   //페이지 길이가 1페이지 이하일때는 그대로 불러오기
