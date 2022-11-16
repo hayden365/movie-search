@@ -1,4 +1,4 @@
-// https://www.omdbapi.com/?i=tt3896198&apikey=bcafafa5
+// https://www.omdbapi.com/?i=tt3896198&apikey=7035c60c
 
 const movieSearch = document.getElementById('movie-search');
 const mainList = document.getElementById('main-list');
@@ -84,7 +84,7 @@ function loadMovieDetails() {
   mainListMovies.forEach((movie) => {
     movie.addEventListener('click', async () => {
       const result = await fetch(
-        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=bcafafa5`
+        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=7035c60c`
       );
       const movieDetails = await result.json();
       //상세화면 로딩보이기
