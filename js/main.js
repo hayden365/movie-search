@@ -67,7 +67,9 @@ function displayMovieList(movies) {
       <div class="title-poster">
         <picture class="title-poster__image">
           <img alt="${movies[idx].Title}" src="${
-      movies[idx].Poster !== 'N/A' ? movies[idx].Poster : 'no-img.png'
+      movies[idx].Poster !== 'N/A'
+        ? movies[idx].Poster
+        : 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80'
     }" loading="eager" class="picture__${movies[idx].imdbID}" />
         </picture>
       </div>
@@ -107,7 +109,11 @@ function displayMovieDetails(movie) {
   result.innerHTML = `
   <div class="movie-poster">
   <img
-    src= "${movie.Poster !== 'N/A' ? movie.Poster : 'no-img.png'}"
+    src= "${
+      movie.Poster !== 'N/A'
+        ? movie.Poster
+        : 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80'
+    }"
     alt="movie-poster"
   />
 </div>
