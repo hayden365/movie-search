@@ -6,6 +6,7 @@ const resultGrid = document.getElementById('result-container');
 const result = document.getElementById('result');
 const loading = document.getElementById('main-loading');
 const detailsLoading = document.getElementById('details-loading');
+const URL = 'https://www.omdbapi.com/?apikey=7035c60c';
 
 function enterkeySearch() {
 	if (window.event.keyCode === 13) {
@@ -14,6 +15,13 @@ function enterkeySearch() {
 		getMovies(searchTerm);
 		if (searchTerm === '') mainList.innerHTML = '';
 	}
+}
+
+function getData(url) {
+	ajax.open('GET', url, false);
+	ajax.send();
+
+	return JSON.parse(ajax.response);
 }
 //api에서 영화 데이터 가져오기
 async function getMovies(title, year = '', page = 1) {
@@ -24,11 +32,8 @@ async function getMovies(title, year = '', page = 1) {
 	const json = await res.json();
 	if (json.Response === 'True') {
 		const { Search: movies, totalResults } = json;
-    return {
-      displayMovieList(movies),
-      console.log(totalResults);
-    }
-}
+		displayMovieList(movies);
+	}
 	return json.Error;
 }
 
@@ -126,3 +131,9 @@ function displayMovieDetails(movie) {
 		}
 	});
 }
+
+//IntersectionObserver
+
+var intersectionObserver = new IntersectionObserver(function (entries) {
+	if (entries[0].intersectionRatio <= 0) return;
+});
