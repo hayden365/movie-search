@@ -1,5 +1,5 @@
 // https://www.omdbapi.com/?i=tt3896198&apikey=7035c60c
-
+const ajax = new XMLHttpRequest();
 const movieSearch = document.getElementById('movie-search');
 const mainList = document.getElementById('main-list');
 const resultGrid = document.getElementById('result-container');
