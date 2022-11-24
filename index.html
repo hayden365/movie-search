@@ -1,62 +1,52 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/febf8ecb9c.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/main.js" defer></script>
-    <title>movie-searcher</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <div class="logo">
-          <a href="/">Movie Searcher</a>
-        </div>
-      </header>
-      <div class="container">
-        <div class="search-container">
-          <input
-            type="text"
-            placeholder="Search for movies"
-            class="search-input"
-            id="movie-search"
-          />
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-        <section class="hidden" id="main-loading">
-          <div h-loader>
-            <svg
-              viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715"
-            >
-              <circle
-                cx="45.714285714285715"
-                cy="45.714285714285715"
-                r="20"
-                stroke-width="5.714285714285714"
-                stroke-dasharray="125.664"
-                stroke-dashoffset="125.66370614359172px"
-              ></circle>
-            </svg>
-          </div>
-        </section>
-        <div class="main-list" id="main-list">
-          <!-- <div class="main-list-item" id="main-list-item">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+		<script src="https://kit.fontawesome.com/febf8ecb9c.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="./css/style.css" />
+		<script src="./js/main.js" defer></script>
+		<title>movie-searcher</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<div class="logo">
+					<a href="/">Movie Searcher</a>
+				</div>
+			</header>
+			<div class="container">
+				<div class="search-container">
+					<input
+						onkeyup="enterkeySearch()"
+						type="text"
+						placeholder="Search for movies"
+						class="search-input"
+						id="movie-search"
+					/>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</div>
+				<section class="hidden" id="main-loading">
+					<div h-loader>
+						<svg viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715">
+							<circle
+								cx="45.714285714285715"
+								cy="45.714285714285715"
+								r="20"
+								stroke-width="5.714285714285714"
+								stroke-dasharray="125.664"
+								stroke-dashoffset="125.66370614359172px"
+							></circle>
+						</svg>
+					</div>
+				</section>
+				<div class="main-list" id="main-list">
+					<!-- <div class="main-list-item" id="main-list-item">
             <a href="javascript:void(0)" class="main-list-item__link">
               <div class="title-poster">
                 <picture class="title-poster__image">
@@ -69,27 +59,25 @@
               </div>
             </a>
           </div> -->
-        </div>
-        <div class="result-container hidden" id="result-container">
-          <section class="hidden" id="details-loading">
-            <div h-loader>
-              <svg
-                viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715"
-              >
-                <circle
-                  cx="45.714285714285715"
-                  cy="45.714285714285715"
-                  r="20"
-                  stroke-width="5.714285714285714"
-                  stroke-dasharray="125.664"
-                  stroke-dashoffset="125.66370614359172px"
-                ></circle>
-              </svg>
-            </div>
-          </section>
+				</div>
+				<div class="result-container hidden" id="result-container">
+					<section class="hidden" id="details-loading">
+						<div h-loader>
+							<svg viewBox="22.857142857142858 22.857142857142858 45.714285714285715 45.714285714285715">
+								<circle
+									cx="45.714285714285715"
+									cy="45.714285714285715"
+									r="20"
+									stroke-width="5.714285714285714"
+									stroke-dasharray="125.664"
+									stroke-dashoffset="125.66370614359172px"
+								></circle>
+							</svg>
+						</div>
+					</section>
 
-          <div class="result" id="result">
-            <!-- <div class="movie-poster">
+					<div class="result" id="result">
+						<!-- <div class="movie-poster">
               <img
                 src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
                 alt="movie-poster"
@@ -123,9 +111,9 @@
                 >
               </p>
             </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
