@@ -35,11 +35,3 @@
 ### 기술 스택
 
 <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white"> <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E">
-
-### 아쉬운점
-
-- API 와 promise 자체가 낯설어서 원하는 대로 개발함에 어려움이 있었습니다.
-- 라우터, import / export 등 써보고 싶었지만 뇌용량의 한계로 실패
-- 무한로딩 또한 마찬가지
-- 상세페이지는 로딩이미지가 함수 실행 완료 후 사라지게 표현했는데 main-loading이 함수 실행 완료 전에 settimeout시간만큼 표시되고 사라지는 부분이 맘에 들지 않습니다.
-- live server에서는 대체이미지가 나오는데 npm상에서는 대체이미지가 안나옵니다.

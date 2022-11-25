@@ -7,6 +7,9 @@ const result = document.getElementById('result');
 const loading = document.getElementById('main-loading');
 const detailsLoading = document.getElementById('details-loading');
 const URL = 'https://www.omdbapi.com/?apikey=7035c60c';
+const store = {
+	currentPage: 1,
+};
 
 function enterkeySearch() {
 	if (window.event.keyCode === 13) {
@@ -17,12 +20,6 @@ function enterkeySearch() {
 	}
 }
 
-function getData(url) {
-	ajax.open('GET', url, false);
-	ajax.send();
-
-	return JSON.parse(ajax.response);
-}
 //api에서 영화 데이터 가져오기
 async function getMovies(title, year = '', page = 1) {
 	const s = `&s=${title}`;
@@ -40,7 +37,7 @@ async function getMovies(title, year = '', page = 1) {
 //불러온 영화목록을 movie-list-item에 담아주기
 function displayMovieList(movies) {
 	mainList.innerHTML = '';
-	for (let idx = 0; idx < movies.length; idx++) {
+	for (let idx = (store.currentPage - 1) * 10; idx < store.currentPage * 10; idx++) {
 		let movieListItem = document.createElement('div');
 		movieListItem.dataset.id = movies[idx].imdbID;
 		movieListItem.classList.add('main-list-item');

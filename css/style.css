@@ -191,9 +191,11 @@ section circle {
   border-radius: 5px;
 }
 .result-container .result .movie-info {
+  max-width: 35rem;
+  margin: auto;
+  margin-top: 3rem;
   text-align: center;
   padding: 3rem 0;
-  margin: 2rem;
   opacity: 0.85;
   background-color: rgba(239, 227, 95, 0.8);
   border-radius: 5px;
@@ -262,7 +264,7 @@ section circle {
     width: 100%;
   }
 }
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1400px) {
   .result-container .result {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
