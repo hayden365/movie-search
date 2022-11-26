@@ -6,38 +6,38 @@ const resultGrid = document.getElementById('result-container');
 const result = document.getElementById('result');
 const loading = document.getElementById('main-loading');
 const detailsLoading = document.getElementById('details-loading');
+const button = document.querySelector('.button-container');
 const URL = 'https://www.omdbapi.com/?apikey=7035c60c';
 const store = {
 	currentPage: 1,
 };
 
-function enterkeySearch() {
-	if (window.event.keyCode === 13) {
-		let searchTerm = movieSearch.value;
-		console.log(searchTerm);
-		getMovies(searchTerm);
-		if (searchTerm === '') mainList.innerHTML = '';
-	}
-}
-
 //api에서 영화 데이터 가져오기
-async function getMovies(title, year = '', page = 1) {
+async function getMovies(title, page = 1) {
 	const s = `&s=${title}`;
-	const y = `&y=${year}`;
 	const p = `&page=${page}`;
-	const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}`);
+	const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${p}`);
 	const json = await res.json();
 	if (json.Response === 'True') {
 		const { Search: movies, totalResults } = json;
-		displayMovieList(movies);
+		displayMovieList(movies, totalResults);
 	}
 	return json.Error;
+}
+
+function enterkeySearch() {
+	if (window.event.keyCode === 13) {
+		let searchTerm = movieSearch.value;
+		getMovies(searchTerm);
+		button.classList.remove('hidden');
+		if (searchTerm === '') mainList.innerHTML = '';
+	}
 }
 
 //불러온 영화목록을 movie-list-item에 담아주기
 function displayMovieList(movies) {
 	mainList.innerHTML = '';
-	for (let idx = (store.currentPage - 1) * 10; idx < store.currentPage * 10; idx++) {
+	for (let idx = 0; idx < 10; idx++) {
 		let movieListItem = document.createElement('div');
 		movieListItem.dataset.id = movies[idx].imdbID;
 		movieListItem.classList.add('main-list-item');
@@ -69,6 +69,7 @@ function loadMovieDetails() {
 			detailsLoading.classList.remove('hidden');
 			mainList.classList.add('hidden');
 			resultGrid.classList.remove('hidden');
+			button.classList.add('hidden');
 			setTimeout(hideAndPrint, 500);
 			function hideAndPrint() {
 				detailsLoading.classList.add('hidden');
@@ -125,12 +126,7 @@ function displayMovieDetails(movie) {
 			result.innerHTML = '';
 			mainList.classList.remove('hidden');
 			resultGrid.classList.add('hidden');
+			button.classList.remove('hidden');
 		}
 	});
 }
-
-//IntersectionObserver
-
-var intersectionObserver = new IntersectionObserver(function (entries) {
-	if (entries[0].intersectionRatio <= 0) return;
-});

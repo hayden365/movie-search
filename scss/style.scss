@@ -157,6 +157,27 @@ section {
 	}
 }
 
+.button-container {
+	&.hidden {
+		display: none;
+	}
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	button {
+		background-color: $font-color;
+		border: none;
+		border-radius: 5px;
+		color: $color-dark;
+		cursor: pointer;
+		padding: 15px 30px;
+		text-align: center;
+		&.prev {
+			margin-right: 20px;
+		}
+	}
+}
+
 .result-container {
 	&.hidden {
 		display: none;
